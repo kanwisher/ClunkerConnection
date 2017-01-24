@@ -10,8 +10,27 @@
 <button type="button" id="searchButton">Search</button>
 <div id="images" ></div>
 
+
+<script type="text/javascript" src="data.json"></script>
 <script type="text/javascript">
+
+
+
+
     $(function() {
+
+
+const myData = JSON.parse(data);
+
+for (var i = 0; i < myData.length; i++) {
+    console.log(myData[i].value);
+}
+
+
+
+
+
+
         var params = {
             // Request parameters
             "q": "",
