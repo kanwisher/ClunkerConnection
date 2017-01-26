@@ -1,30 +1,127 @@
 <!DOCTYPE html>
 <html>
+
 <head>
+    <style>
+
+    select, #searchButton {
+        margin: 10px;
+    }
+
+    #carMakesDataList {
+        display: none;
+        
+    }
+
+    #carModelsDataList {
+        display: none;
+    }
+
+    #searchButton {
+        display: none;
+    }
+
+  
+
+    </style>
+
     <title>JSSample</title>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+
 </head>
+
+
 <body>
-
-<input type="text" id="searchBox" placeholder="Search for vehicle">
-<button type="button" id="searchButton">Search</button>
-<div id="images" ></div>
-
-
-<script type="text/javascript" src="data.json"></script>
-<script type="text/javascript">
+    
+  <select id="yearDataList">
+    <option value = "" disabled selected>Select Your Year</option>
+    </select>
 
 
+  <select id="carMakesDataList">
+    <option value = "" disabled selected>Select Your Make</option>
+  </select>
 
 
-    $(function() {
+  <select id="carModelsDataList">
+    <option value = "" disabled selected>Select Your Model</option>
+    </select>
 
 
-const myData = JSON.parse(data);
 
-for (var i = 0; i < myData.length; i++) {
-    console.log(myData[i].value);
-}
+
+
+
+
+    <button type="button" id="searchButton">Search</button>
+    <div id="images"></div>
+
+    <script type="text/javascript" src="data.json"></script>
+    <script type="text/javascript">
+
+    $(function() { //document onready function
+
+
+        const myData = JSON.parse(data); //turns data into a JSON object
+        let currentMake = "";
+        let currentModel = "";
+        let currentYear = "";
+        
+
+        
+        for (var i = 1950; i <= 2017; i++) {
+            let makeString = "<option value ='" + i + "'>" + i + "</option>";
+            $("#yearDataList").append(makeString);
+            
+        }
+
+        for (var i = 0; i < myData.length; i++) {
+            let makeString = "<option value ='" + i + "'>" + myData[i].title + "</option>";
+            $("#carMakesDataList").append(makeString);
+        }
+
+
+        $("#yearDataList").on('change', function(){
+            $("#carMakesDataList").css('display', 'block');
+            currentYear = $(this).val();
+        })
+
+
+
+        
+    
+        $("#carMakesDataList").on('change', function() { //when make option is selected
+            $("#carModelsDataList").empty(); //empty model list everytime Make is selected
+            $("#carModelsDataList").append("<option value= '' disabled selected>Select Your Model</option>");
+            $("#searchButton").css('display', 'none'); //hide search in case it's visible
+            indexValue = $(this).val(); //logs index number of object location
+            currentMake = myData[indexValue].title;
+            for (var i = 0; i < myData[indexValue].models.length; i++) { //creates options
+                let makeString = "<option value ='" + myData[indexValue].models[i].title + "'>" + myData[indexValue].models[i].title + "</option>";
+                $("#carModelsDataList").append(makeString);
+
+            }
+            
+            $("#carModelsDataList").css('display', 'block'); //displays next selector area
+
+             })
+
+        
+
+        $("#carModelsDataList").on('change', function() { //when model option is selected
+            currentModel = $(this).val();
+            $("#searchButton").css('display', 'block'); //displays search button
+         });
+          
+       
+
+         
+    
+
+
+        
+
+        
 
 
 
@@ -40,38 +137,39 @@ for (var i = 0; i < myData.length; i++) {
             "safeSearch": "Moderate",
         };
 
-        
-        
-    
-
-    $("#searchButton").on('click', function() {
-
-    params.q = $("#searchBox").val(); 
-        $.ajax({
 
 
-            url: "https://api.cognitive.microsoft.com/bing/v5.0/images/search?" + $.param(params),
-            beforeSend: function(xhrObj){
-                // Request headers
-                xhrObj.setRequestHeader("Ocp-Apim-Subscription-Key","981fa9e92c554da89c418b3cf40e7598");
-            },
-            type: "GET",
-            // Request body
-            data: "{body}",
-        })
-        .done(function(response) {
-           
 
-            let newDiv = $("<div>");
-            newDiv.html("<img src='" + response.value[0].contentUrl + "' height='200px'</img>");
-            $("#images").html(newDiv);
-        })
-        .fail(function() {
-            alert("error");
+
+        $("#searchButton").on('click', function() {
+
+            params.q = currentYear + " " + currentMake + " " + currentModel;
+            $.ajax({
+
+
+                    url: "https://api.cognitive.microsoft.com/bing/v5.0/images/search?" + $.param(params),
+                    beforeSend: function(xhrObj) {
+                        // Request headers
+                        xhrObj.setRequestHeader("Ocp-Apim-Subscription-Key", "981fa9e92c554da89c418b3cf40e7598");
+                    },
+                    type: "GET",
+                    // Request body
+                    data: "{body}",
+                })
+                .done(function(response) {
+
+
+                    let newDiv = $("<div>");
+                    newDiv.html("<img src='" + response.value[0].contentUrl + "' height='200px'</img>");
+                    $("#images").html(newDiv);
+                })
+                .fail(function() {
+                    alert("error");
+                });
         });
-    });
 
-    }) 
-</script>
+    })
+    </script>
 </body>
+
 </html>
