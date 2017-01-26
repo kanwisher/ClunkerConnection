@@ -2,6 +2,13 @@
 <html>
 
 <head>
+
+    <!-- Odometr includes -->
+
+
+<!-- Extra styles for this example -->
+<link rel="stylesheet" type="text/css" href="theme.css">
+
     <style>
 
     select, #searchButton {
@@ -13,6 +20,10 @@
         
     }
 
+    .odometer {
+    font-size: 100px;
+    }
+
     #carModelsDataList {
         display: none;
     }
@@ -21,17 +32,26 @@
         display: none;
     }
 
+    #yearDataList {
+        display: block;
+    }
+
   
 
     </style>
 
     <title>JSSample</title>
+    
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+    <script type="text/javascript" src="textroller.js"></script>
 
+    
 </head>
 
 
 <body>
+
+<div id="roller" class="textroller"></div>
     
   <select id="yearDataList">
     <option value = "" disabled selected>Select Your Year</option>
@@ -47,6 +67,9 @@
     <option value = "" disabled selected>Select Your Model</option>
     </select>
 
+    <input type='text' placeholder="zipcode--">
+    <input type='text' placeholder="Selling Price--">
+
 
 
 
@@ -56,10 +79,25 @@
     <button type="button" id="searchButton">Search</button>
     <div id="images"></div>
 
+    
     <script type="text/javascript" src="data.json"></script>
     <script type="text/javascript">
 
+     var elt         = document.getElementById("roller");
+  var texts       = ["--clunker-", "connection"]
+  elt.textroller  = new TextRoller({
+      el: elt,
+      values: texts,    // an array of texts.     default : [el.innerHtml]
+      align: "middle",    // right, left or middle. default : middle
+      delay: 3000,      // in milliseconds,       default : 5000
+      loop: false       // at the end, restart.   default : true
+  });
+
+
     $(function() { //document onready function
+  
+
+ 
 
 
         const myData = JSON.parse(data); //turns data into a JSON object
@@ -114,18 +152,6 @@
          });
           
        
-
-         
-    
-
-
-        
-
-        
-
-
-
-
 
 
         var params = {
