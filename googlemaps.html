@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style>
+	/* Always set the map height explicitly to define the size of the div
+ * element that contains the map. */
+#map {
+  height: 450px;
+  width: 100%;
+  margin-top: 50px;
+}
+/* Optional: Makes the sample page fill the window. */
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+</style>
+<script async defer src= "https://maps.googleapis.com/maps/api/js?key=AIzaSyC9_GECrd1tyrF3EoeHG4xgHL6wb916gOQ&callback=initMap"></script>
+</head>
+<body>
+
+<button id="searchButton">
+
+<div id="map"></div>
+<!-- Replace the value of the key parameter with your own API key. -->
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script>
+var locations = [];s
+var zipcode = "";
+
+ //pulls zipcode and throws lat/long in array
+$("#searchButton").on('click', function(){
+        $.ajax({
+        	url: "http://maps.googleapis.com/maps/api/geocode/json?address=%22" + zipcode + "%22",
+
+         success: function(result){
+            
+            locations.push(result.results[0].geometry.location);
+            initMap();
+
+            
+
+
+        }
+    });
+
+
+
+
+
+function initMap() {
+
+	console.log(locations[0]);
+	
+  var charlotte = {lat: 35.2271, lng: -80.8431};
+  var map = new google.maps.Map(document.getElementById('map'), {
+    zoom: 10,
+    center: charlotte
+  });
+	
+  var contentString = '<div id="content">'+
+      '<div id="siteNotice">'+
+      '<h1> 1998 Ford Mustang </h1>' +
+     	'<p> Mileage: 205000 </p>' +
+      '<p> Price: $4,500 </p>'
+      '</div>'+
+      '</div>';
+
+  var infowindow = new google.maps.InfoWindow({
+    content: contentString
+  });
+
+
+	
+
+  var marker = new google.maps.Marker({
+    position: locations[0],
+
+    map: map
+    
+  });
+
+  marker.addListener('click', function() {
+    infowindow.open(map, marker);
+  });
+}
+})
+
+</script>
+
+
+
+
+
+</body>
+</html>
