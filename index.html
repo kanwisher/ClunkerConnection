@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>--Clunker Connection--</title>
+    <!--Text Roller Logo script-->
+    <script type="text/javascript" src="assets/scripts/textroller.js"></script>
+    <!--Theme for text roller-->
+    <link rel="stylesheet" type="text/css" href="assets/styles/textrollertheme.css">
+    <!--Bootstrap Library CDN-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <!-- Main page styles -->
+    <link rel="stylesheet" type="text/css" href="assets/styles/style.css">
+    <!--AJAX library CDN-->
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+</head>
+  <body>
+    <div class="container">
+        <div id="roller" class="textroller"></div>
+        <div id="secRoll" class="textSecRoll"></div>
+        <div class="col-lg-9">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Add Vehicle</h3>
+                </div>
+                <div class="panel-body">
+                    <form>
+                        <div class="form-group">
+                            <select id="yearDataList">
+                                <option value="" disabled selected>Select Your Year</option>
+                            </select>
+                            <select id="carMakesDataList">
+                                <option value="" disabled selected>Select Your Make</option>
+                            </select>
+                            <select id="carModelsDataList">
+                                <option value="" disabled selected>Select Your Model</option>
+                            </select>
+                            <input type='text' id="zip" placeholder="zipcode--">
+                            <input type='number' id="prices" placeholder="Selling prices--">
+                            <button type="button" id="searchButton">Search</button>
+                    </form>
+                </div>
+                <div id="images"></div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="panel panel-default">
+                            <div class="panel panel-heading">
+                                <h3 class="panel-title">Current Clunkers</h3>
+                            </div>
+                            <table class="table table-hover" id="clunkerTable">
+                                <thead>
+                                    <th>Year</th>
+                                    <th>Make</th>
+                                    <th>Model</th>
+                                    <th>ZipCode</th>
+                                    <th>Selling prices</th>
+                                    <th>Mileage</th>
+                                </thead>
+                                <tbody id="clunkerTable">
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    <!--FireBase CDN-->
+    <script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
+    <!--JSON file-->
+    <script type="text/javascript" src="assets/json/data.json"></script>
+    <!--Javascript/jQuery-->
+    <script type="text/javascript" src="assets/scripts/script.js"></script>
+  </body>
+</html>

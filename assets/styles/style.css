@@ -1,0 +1,25 @@
+
+    select, #searchButton {
+        margin: 10px;
+    }
+
+    #carMakesDataList {
+        display: none;
+        
+    }
+
+    .odometer {
+    font-size: 100px;
+    }
+
+    #carModelsDataList {
+        display: none;
+    }
+
+    #searchButton {
+        display: none;
+    }
+
+    #yearDataList {
+        display: block;
+    }
