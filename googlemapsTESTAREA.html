@@ -17,35 +17,56 @@ html, body {
   padding: 0;
 }
 </style>
-<script async defer src= "https://maps.googleapis.com/maps/api/js?key=AIzaSyC9_GECrd1tyrF3EoeHG4xgHL6wb916gOQ&callback=initMap"></script>
+<script  async defer src= "https://maps.googleapis.com/maps/api/js?key=AIzaSyC9_GECrd1tyrF3EoeHG4xgHL6wb916gOQ&callback=initMap"></script>
 </head>
 <body>
 
-<button id="searchButton">
 
+<input id="zipInput" type="text" placeholder="Input ZipCode!">
+<button id="zipSearchButton">Search!</button>
 <div id="map"></div>
-<!-- Replace the value of the key parameter with your own API key. -->
+
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script>
-var locations = [];s
+var locations = [];
 var zipcode = "";
 
  //pulls zipcode and throws lat/long in array
-$("#searchButton").on('click', function(){
+$("#zipSearchButton").on('click', function(){
+  zipcode = $("#zipInput").val().trim();
+  
         $.ajax({
         	url: "http://maps.googleapis.com/maps/api/geocode/json?address=%22" + zipcode + "%22",
 
          success: function(result){
+
+          var zipObject = {
+            zipcode: "",
+            latLong: ""
+          }
+          zipObject.zipcode = zipcode;
+          zipObject.latLong = result.results[0].geometry.location;
+          console.log(zipObject.latLong);
+          
+
+          
+            //map function????
+          
+            locations.push(zipObject);
+           
+
             
-            locations.push(result.results[0].geometry.location);
+            
             initMap();
+       
 
             
 
 
         }
     });
+});
 
 
 
@@ -53,14 +74,14 @@ $("#searchButton").on('click', function(){
 
 function initMap() {
 
-	console.log(locations[0]);
 	
   var charlotte = {lat: 35.2271, lng: -80.8431};
+
   var map = new google.maps.Map(document.getElementById('map'), {
     zoom: 10,
     center: charlotte
   });
-	
+	var iconBase = 'https://maps.google.com/mapfiles/kml/pal4/'
   var contentString = '<div id="content">'+
       '<div id="siteNotice">'+
       '<h1> 1998 Ford Mustang </h1>' +
@@ -69,25 +90,34 @@ function initMap() {
       '</div>'+
       '</div>';
 
-  var infowindow = new google.maps.InfoWindow({
-    content: contentString
-  });
 
 
-	
+//looks at locations array and displays markers
+for (var i = 0; i < locations.length; i++) {
+
+
 
   var marker = new google.maps.Marker({
-    position: locations[0],
+    
+    position: locations[i].latLong,
 
-    map: map
+    map: map,
+
+    icon: iconBase + 'icon54.png',
+
+    animation: google.maps.Animation.DROP
     
   });
 
-  marker.addListener('click', function() {
-    infowindow.open(map, marker);
+    var infowindow = new google.maps.InfoWindow({
+    content: contentString
   });
+
 }
-})
+
+
+}
+
 
 </script>
 
