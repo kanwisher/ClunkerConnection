@@ -56,13 +56,16 @@ $("#searchButton").on("click", function(event) {
 
   let prices = $("#prices").val();
 
+  let mileage = $("#miles").val().trim();
+
 
   let car = {
       year: year,
       make: make,
       model: model,
       zip: zip,
-      prices: prices
+      prices: prices,
+      mileage: mileage
   }
 
   zipArray.push(zip);
@@ -79,7 +82,8 @@ dataRef.ref("zipArray").set(zipArray);
       make: make,
       model: model,
       zip: zip,
-      prices: prices
+      prices: prices,
+      mileage: mileage
       
 
   });
@@ -92,8 +96,8 @@ dataRef.ref("carObject").on("child_added", function(childSnapshot) {
           "</td><td id='makeDisplay'>" + childSnapshot.val().make +
           "</td><td id='modelDisplay'>" + childSnapshot.val().model +
           "</td><td id='nextDisplay'>" + childSnapshot.val().zip +
-          "</td><td id='awayDisplay'>" + childSnapshot.val().prices + "</td></tr>");
-
+          "</td><td id='awayDisplay'>" + childSnapshot.val().prices + 
+          "</td><td id='milesDisplay'>" + childSnapshot.val().mileage + "</td></tr>");
     
       
   },
