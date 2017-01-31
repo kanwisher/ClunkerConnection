@@ -6,7 +6,7 @@ $(function() { //on READY!
 
 //global JSON
 const myData = JSON.parse(data); //turns data string into a JSON object
-
+let zipArray = [];
 
 
 
@@ -42,6 +42,8 @@ $("#searchButton").on("click", function(event) {
   event.preventDefault();
 
 
+
+
   // Code for storing and retrieving the most recent user.
 
   let year = $("#yearDataList").val().trim()
@@ -55,19 +57,35 @@ $("#searchButton").on("click", function(event) {
   let prices = $("#prices").val();
 
 
+  let car = {
+      year: year,
+      make: make,
+      model: model,
+      zip: zip,
+      prices: prices
+  }
+
+  zipArray.push(zip);
+
+addZipCode(zipArray);
+
+dataRef.ref("zipArray").set(zipArray);
+
+
   // Code for the push
-  dataRef.ref().push({
+  dataRef.ref("carObject").push({
 
       year: year,
       make: make,
       model: model,
       zip: zip,
-      prices: prices,
+      prices: prices
+      
 
   });
 });
 
-dataRef.ref().on("child_added", function(childSnapshot) {
+dataRef.ref("carObject").on("child_added", function(childSnapshot) {
 
       $('#clunkerTable').append(
           "<tr><td id='yearDisplay'>" + childSnapshot.val().year +
@@ -75,13 +93,22 @@ dataRef.ref().on("child_added", function(childSnapshot) {
           "</td><td id='modelDisplay'>" + childSnapshot.val().model +
           "</td><td id='nextDisplay'>" + childSnapshot.val().zip +
           "</td><td id='awayDisplay'>" + childSnapshot.val().prices + "</td></tr>");
+
+    
+      
   },
 
   function(errorObject) {
       console.log("Read failed: " + errorObject.code)
   });
 
+dataRef.ref("zipArray").on("value", function(childSnapshot){
+  if (childSnapshot.val().length > 0) {
+    zipArray = childSnapshot.val();  
+  }
+  
 
+});
 
 
 
@@ -135,9 +162,9 @@ let vehicle = {
       $("#carModelsDataList").append("<option value= '' disabled selected>Select Your Model</option>"); //Create placeholder
       $("#searchButton").css('display', 'none'); //hide search in case it's visible
       vehicle.indexValue = $(this).val(); //logs index number in JSON object of vehicle Make 
-      vehicle.currentMake = myData[indexValue].title;
-      for (let i = 0; i < myData[indexValue].models.length; i++) { //creates options
-          let makeString = "<option value ='" + myData[indexValue].models[i].title + "'>" + myData[indexValue].models[i].title + "</option>";
+      vehicle.currentMake = myData[vehicle.indexValue].title;
+      for (let i = 0; i < myData[vehicle.indexValue].models.length; i++) { //creates options
+          let makeString = "<option value ='" + myData[vehicle.indexValue].models[i].title + "'>" + myData[vehicle.indexValue].models[i].title + "</option>";
           $("#carModelsDataList").append(makeString);
       }
 
@@ -214,13 +241,15 @@ let vehicle = {
 
 
 
-console.log("hello");
-var locations = [];
-var zipcode = "";
 
+
+
+let locations = [];
  //pulls zipcode and throws lat/long in array
-$("#zipSearchButton").on('click', function(){
-  zipcode = $("#zipInput").val().trim();
+function addZipCode(zipArray){
+  var zipArray = zipArray;
+  for (var i = 0; i < zipArray.length; i++) {
+    let zipcode = zipArray[i];
   
         $.ajax({
           url: "http://maps.googleapis.com/maps/api/geocode/json?address=%22" + zipcode + "%22",
@@ -252,9 +281,10 @@ $("#zipSearchButton").on('click', function(){
 
         }
     });
-});
 
+}
 
+}
 
 
 
@@ -265,7 +295,10 @@ function initMap() {
 
   var map = new google.maps.Map(document.getElementById('map'), {
     zoom: 10,
-    center: charlotte
+    center: charlotte,
+
+  scrollwheel: false,
+  disableDoubleClickZoom: true
   });
   var iconBase = 'https://maps.google.com/mapfiles/kml/pal4/'
   var contentString = '<div id="content">'+
