@@ -211,6 +211,102 @@ let vehicle = {
 
 
 
+//~~~~~~~~~~~~~~~~~~~~~~GOOGLE MAPS API~~~~~~~~~~~~~~~~~~~~~~~~~//
+
+
+
+
+var locations = [];
+var zipcode = "";
+
+ //pulls zipcode and throws lat/long in array
+$("#zipSearchButton").on('click', function(){
+  zipcode = $("#zipInput").val().trim();
+  
+        $.ajax({
+          url: "http://maps.googleapis.com/maps/api/geocode/json?address=%22" + zipcode + "%22",
+
+         success: function(result){
+
+          var zipObject = {
+            zipcode: "",
+            latLong: ""
+          }
+          zipObject.zipcode = zipcode;
+          zipObject.latLong = result.results[0].geometry.location;
+          console.log(zipObject.latLong);
+          
+
+          
+            //map function????
+          
+            locations.push(zipObject);
+           
+
+            
+            
+            initMap();
+       
+
+            
+
+
+        }
+    });
+});
+
+
+
+
+
+function initMap() {
+
+  
+  var charlotte = {lat: 35.2271, lng: -80.8431};
+
+  var map = new google.maps.Map(document.getElementById('map'), {
+    zoom: 10,
+    center: charlotte
+  });
+  var iconBase = 'https://maps.google.com/mapfiles/kml/pal4/'
+  var contentString = '<div id="content">'+
+      '<div id="siteNotice">'+
+      '<h1> 1998 Ford Mustang </h1>' +
+      '<p> Mileage: 205000 </p>' +
+      '<p> Price: $4,500 </p>'
+      '</div>'+
+      '</div>';
+
+
+
+//looks at locations array and displays markers
+for (var i = 0; i < locations.length; i++) {
+
+
+
+  var marker = new google.maps.Marker({
+    
+    position: locations[i].latLong,
+
+    map: map,
+
+    icon: iconBase + 'icon54.png',
+
+    animation: google.maps.Animation.DROP
+    
+  });
+
+    var infowindow = new google.maps.InfoWindow({
+    content: contentString
+  });
+
+}
+
+
+}
+
+
+
 
 //~~~~~~~~~~~~~~~~~~~~~~TEXT ROLLER LOGO~~~~~~~~~~~~~~~~~~~~~~~~~//
 
