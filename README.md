@@ -1,8 +1,15 @@
-# ClunkerConnection
+# <h1>ClunkerConnection</h1>
 
-An easy to use web based marketplace for the sale of vehicles that run and are priced at $5,000 or less.
+Are you broke? Tired of riding your bicycle or walking everywhere?
+We have the connection for you! Introducing... Clunker Connection. An easy-to-use website for the budget minded car buyer. For the sale of working/running vehicles that are priced at $4,000 or less.
 
-<ul>Current features:
+You won't find our large selection of clunker vehicle inventory at a fancy car dealership, we connect sellers to buyers in a simple web marketplace. Posting your vehicle can be done in seconds.
+
+<h2>Our final product:</h2>
+
+
+
+<ul><strong>Current features:</strong>
 <li>Intelligent drop-down selection by vehicle year, make and model</li>
 <li>Automatic photo selection of general appearance of vehicle</li>
 <li>Database of current sales listings</li>
@@ -10,7 +17,7 @@ An easy to use web based marketplace for the sale of vehicles that run and are p
 </ul>
 
 
-<ul>Technologies:
+<ul><strong>Technologies:</strong>
 <li>Google Maps API</li>
 <li>Bing Image search API</li>
 <li>Firebase integration</li>
