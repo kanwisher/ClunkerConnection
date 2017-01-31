@@ -4,7 +4,6 @@ $(function() { //on READY!
 
 
 
-
 //global JSON
 const myData = JSON.parse(data); //turns data string into a JSON object
 
@@ -304,7 +303,7 @@ for (var i = 0; i < locations.length; i++) {
 
 
 }
-
+initMap();
 
 
 
