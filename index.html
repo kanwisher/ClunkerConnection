@@ -11,8 +11,10 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <!-- Main page styles -->
     <link rel="stylesheet" type="text/css" href="assets/styles/style.css">
-    <!--AJAX library CDN-->
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+    <!-- Google maps API -->
+    <script  async defer src= "https://maps.googleapis.com/maps/api/js?key=AIzaSyC9_GECrd1tyrF3EoeHG4xgHL6wb916gOQ&callback=initMap"></script>
+    <!-- AJax/ jQuery call -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 </head>
   <body>
     <div class="container">
@@ -63,6 +65,9 @@
                     </div>
                 </div>
             </div>
+            <input id="zipInput" type="text" placeholder="Input ZipCode!">
+<button id="zipSearchButton">Search!</button>
+<div id="map"></div>
     <!--FireBase CDN-->
     <script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
     <!--JSON file-->
