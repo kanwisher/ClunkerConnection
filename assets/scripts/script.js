@@ -215,7 +215,7 @@ let vehicle = {
 
 
 
-
+console.log("hello");
 var locations = [];
 var zipcode = "";
 
