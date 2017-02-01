@@ -100,14 +100,15 @@ dataRef.ref("zipArray").set(zipArray);
 dataRef.ref("carObject").on("child_added", function(childSnapshot) {
 
       $('#clunkerTable').append(
-          "<tr><td class='vehicleData'>" + childSnapshot.val().year +
-          "</td><td class='vehicleData'>" + childSnapshot.val().make +
-          "</td><td class='vehicleData'>" + childSnapshot.val().model +
-          "</td><td class='vehicleData'>" + childSnapshot.val().zip +
-          "</td><td class='vehicleData'>$" + parseInt(childSnapshot.val().prices).toLocaleString('en') + 
-          "</td><td class='vehicleData'>" + parseInt(childSnapshot.val().mileage).toLocaleString('en') +
-      "</td><td class='vehicleData'><button class='buyButton' data-target='#modal' data-toggle='modal' data-vehicle='" + childSnapshot.val().year + " " + childSnapshot.val().make + " " + childSnapshot.val().model + "'>Contact</button>" +
-      "</td><td class='vehicleData'>" + childSnapshot.val().vehicleImage + "</td></tr>");
+          "<tr><td class='vehicleData'>" + "<p>" + childSnapshot.val().year + "</p>" +
+          "</td><td class='vehicleData'>" + "<p>" + childSnapshot.val().make + "</p>" +
+          "</td><td class='vehicleData'>" + "<p>" + childSnapshot.val().model + "</p>" +
+          "</td><td class='vehicleData'>" + "<p>" + childSnapshot.val().zip + "</p>" +
+          "</td><td class='vehicleData'>" + "<p>$" + parseInt(childSnapshot.val().prices).toLocaleString('en') + 
+          "</td><td class='vehicleData'>" + "<p>" + parseInt(childSnapshot.val().mileage).toLocaleString('en') +
+     
+      "</td><td class='vehicleData'>" + childSnapshot.val().vehicleImage + 
+       "</td><td class='vehicleData'><button class='buyButton' data-target='#modal' data-toggle='modal' data-vehicle='" + childSnapshot.val().year + " " + childSnapshot.val().make + " " + childSnapshot.val().model + "'>Contact</button></td></tr>");
       
         
   },

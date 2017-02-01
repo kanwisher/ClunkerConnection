@@ -50,3 +50,23 @@
 .row {
     margin-top: 50px;
 }
+
+.table th {
+    text-align: center;
+    vertical-align: middle;
+}
+
+.vehicleData p {
+    
+    margin-top: 40px;
+
+}
+
+.buyButton {
+    margin-top: 40px;
+}
+
+.vehicleData img {
+    border: solid grey 2px;
+}
+
