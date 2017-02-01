@@ -86,3 +86,23 @@ overflow: auto;
     border: solid grey 2px;
 }
 
+.modal-dialog {
+    width: 700px;
+    padding: 50px;
+}
+
+.modal-body input, textarea {
+    display: block;
+    margin: 10px auto;
+}
+
+.modal-body textarea{
+    width: 400px;
+    height: 100px;
+}
+
+.vehicleInfoModal {
+    text-align: center;
+    font-size: 20px;
+    font-weight: bold;
+
