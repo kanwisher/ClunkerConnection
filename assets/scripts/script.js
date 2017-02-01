@@ -12,7 +12,14 @@ let zipArray = [];
 
 
 
+//contact stuff//
 
+
+
+
+$("#clunkerTable").on('click', function(){
+  window.location.href = "contact.html"
+});
 
 //~~~~~~~~~~~~~~~~~FIREBASE~~~~~~~~~~~~~~~~~~~~~~//
 
