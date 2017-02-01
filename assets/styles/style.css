@@ -105,4 +105,10 @@ overflow: auto;
     text-align: center;
     font-size: 20px;
     font-weight: bold;
+}
+
+
+.errorPrompt {
+    color: red;
+}
 

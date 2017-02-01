@@ -71,8 +71,15 @@ $("#searchButton").on("click", function(event) {
   let mileage = $("#miles").val().trim();
 
   
-if (zip.match(/^\d{5}$/)){
+if (zip.match(/^\d{5}$/) === null){
+   $(".errorPrompt").html("Please enter a 5-digit zipcode");
+  
+  } else if (prices > 4000 || prices < 0 || prices === ""){
+    $(".errorPrompt").html("Please enter a price between $1 and $4000");
 
+}else if (mileage < 0 || mileage > 300000 || mileage === ""){
+    $(".errorPrompt").html("Please enter valid mileage");
+  } else {
 
 
 
@@ -102,10 +109,8 @@ dataRef.ref("zipArray").set(zipArray);
 
   });
 
-  } else{
-  $(".errorPrompt").html("Please enter a 5-digit zipcode")
-}
 
+}
 
 });
 
