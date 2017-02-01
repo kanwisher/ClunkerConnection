@@ -112,3 +112,6 @@ overflow: auto;
     color: red;
 }
 
+.panel-title {
+    font-family: 'Fira Sans', sans-serif;
+}

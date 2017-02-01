@@ -24,3 +24,15 @@ You won't find our large selection of clunker vehicle inventory at a fancy car d
 <li>HTML5/Bootstrap/CSS/Javascript/jQuery</li>
 <li>Animated odometer style logo</li>
 </ul>
+
+<ul><strong>Challenges:</strong>
+<li>Getting the google map api up and running and responsive</li>
+<li>data validation for the zipcode, price, milegae</li>
+<li>pulling data from firebase and keeping zipcode interactive on google map</li>
+</ul>
+
+<ul><strong>Improvements:</strong>
+<li>make a user vote button to remove fake ads</li>
+<li>have a google/facebook integrated login</li>
+<li>get the google map to be more interactive showing the actual data on each marker for each specific car</li>
+</ul>
