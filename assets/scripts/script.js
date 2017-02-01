@@ -306,7 +306,7 @@ function addZipCode(){
 
     
         $.ajax({
-          url: "http://maps.googleapis.com/maps/api/geocode/json?address=%22" + zipcode + "%22",
+          url: "https://maps.googleapis.com/maps/api/geocode/json?address=%22" + zipcode + "%22",
 
          success: function(result){
 
