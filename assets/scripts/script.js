@@ -21,6 +21,12 @@ $("#clunkerTable").on('click', function(){
   window.location.href = "contact.html"
 });
 
+$("#back").on('click', function(){
+  window.location.href = "index.html"
+});
+
+
+
 //~~~~~~~~~~~~~~~~~FIREBASE~~~~~~~~~~~~~~~~~~~~~~//
 
 
