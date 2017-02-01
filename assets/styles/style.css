@@ -112,11 +112,6 @@ overflow: auto;
     color: red;
 }
 
-<<<<<<< Updated upstream
-.panel-title {
-    font-family: 'Fira Sans', sans-serif;
-}
-=======
 
 #zip, #prices, #miles {
     display: none;
@@ -142,4 +137,4 @@ input {
     margin: 10px;
 }
 
->>>>>>> Stashed changes
+
