@@ -17,9 +17,7 @@ let zipArray = [];
 
 
 
-$("#clunkerTable").on('click', function(){
-  window.location.href = "contact.html"
-});
+
 
 $("#back").on('click', function(){
   window.location.href = "index.html"
@@ -106,14 +104,17 @@ dataRef.ref("zipArray").set(zipArray);
 dataRef.ref("carObject").on("child_added", function(childSnapshot) {
 
       $('#clunkerTable').append(
-          "<tr><td id='yearDisplay'>" + childSnapshot.val().year +
-          "</td><td id='makeDisplay'>" + childSnapshot.val().make +
-          "</td><td id='modelDisplay'>" + childSnapshot.val().model +
-          "</td><td id='nextDisplay'>" + childSnapshot.val().zip +
-          "</td><td id='awayDisplay'>$" + parseInt(childSnapshot.val().prices).toLocaleString('en') + 
-          "</td><td id='milesDisplay'>" + parseInt(childSnapshot.val().mileage).toLocaleString('en') + "</td></tr>");
-
+          "<tr><td class='vehicleData'>" + childSnapshot.val().year +
+          "</td><td class='vehicleData'>" + childSnapshot.val().make +
+          "</td><td class='vehicleData'>" + childSnapshot.val().model +
+          "</td><td class='vehicleData'>" + childSnapshot.val().zip +
+          "</td><td class='vehicleData'>$" + parseInt(childSnapshot.val().prices).toLocaleString('en') + 
+          "</td><td class='vehicleData'>" + parseInt(childSnapshot.val().mileage).toLocaleString('en') +
+      "</td><td class='vehicleData'><button class='buyButton' data-vehicle='" + JSON.stringify(childSnapshot.val()) + "'>BUY NOW</button>" + "</td></tr>");
+      
+        
   },
+
 
   function(errorObject) {
       console.log("Read failed: " + errorObject.code)
@@ -128,7 +129,9 @@ dataRef.ref("zipArray").on("value", function(childSnapshot){
 
 });
 
-
+$("body").delegate("button", "click", function(){
+  console.log($(this).data("vehicle"));
+});
 
 
 

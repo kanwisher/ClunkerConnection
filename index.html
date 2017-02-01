@@ -1,15 +1,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8">
-    <title>--Clunker Connection--</title>
-      <!-- AJax/ jQuery call -->
 
-    <!--Theme for text roller-->
-  
-    <!--Bootstrap Library CDN-->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <meta charset="utf-8">
+   
+
     <!-- Main page styles -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="assets/styles/style.css">
       <link rel="stylesheet" type="text/css" href="assets/styles/textrollertheme.css">
 
@@ -52,7 +49,7 @@
                             <div class="panel panel-heading">
                                 <h3 class="panel-title">Current Clunkers</h3>
                             </div>
-                            <table class="table table-hover" id="clunkerTable">
+                            <table class="table table-hover">
                                 <thead>
                                     <th>Year</th>
                                     <th>Make</th>
@@ -60,19 +57,50 @@
                                     <th>ZipCode</th>
                                     <th>Selling prices</th>
                                     <th>Mileage</th>
+                                    <th>Contact</th>
                                 </thead>
                                 <tbody id="clunkerTable">
                                 </tbody>
                             </table>
+
                         </div>
                     </div>
                 </div>
             </div>
+<!-- Button trigger modal -->
+<button type="button" class="vehicleData" data-toggle="modal" data-target="#modal">
+  Contact Seller
+</button>
+ 
+<!-- Modal -->
+<div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="modalLabel">Contact the Seller</h4>
+      </div>
+      <div class="modal-body">
+        <input type='text' placeholder='Name'>
+<input type='text' placeholder='E-Mail'>
+<textarea placeholder ='Comments/Questions'></textarea>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="" onclick='' data-dismiss="modal">Submit</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 <div id="map"></div>
 
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+      <!-- AJax/ jQuery call -->
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  
+    <!--Bootstrap Library CDN-->
+ <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
       <!--JSON file-->
     <script type="text/javascript" src="assets/json/data.json"></script>
      <!--Javascript/jQuery-->
