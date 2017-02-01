@@ -112,6 +112,34 @@ overflow: auto;
     color: red;
 }
 
+<<<<<<< Updated upstream
 .panel-title {
     font-family: 'Fira Sans', sans-serif;
 }
+=======
+
+#zip, #prices, #miles {
+    display: none;
+}
+
+
+
+.carousel-caption {
+    background: rgba(0, 0, 0, 0.70);
+ 
+}
+
+
+#carousel-example-generic {
+    margin-bottom: 50px;
+}
+.carousel-inner > .item > img {
+    margin: 0 auto;
+    height: 400px;
+}
+
+input {
+    margin: 10px;
+}
+
+>>>>>>> Stashed changes

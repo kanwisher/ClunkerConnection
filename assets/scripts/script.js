@@ -3,7 +3,9 @@
 $(function() { //on READY!
 
 
-
+$('.carousel').carousel({
+  interval: 5000
+})
 
 //global JSON
 const myData = JSON.parse(data); //turns data string into a JSON object
@@ -19,11 +21,16 @@ $("#zip").on('focus', function(){
   $(".errorPrompt").html("");
 })
 
+$("#prices").on('focus', function(){
+  $(".errorPrompt").html("");
+})
+
+$("#miles").on('focus', function(){
+  $(".errorPrompt").html("");
+})
 
 
-$("#back").on('click', function(){
-  window.location.href = "index.html"
-});
+
 
 
 
@@ -215,7 +222,11 @@ let vehicle = {
 
   $("#carModelsDataList").on('change', function() { //when model option is selected
       vehicle.currentModel = $(this).val();
-      $("#searchButton").css('display', 'block'); //displays search button
+       $("#zip").css('display', 'inline'); //displays search button
+        $("#prices").css('display', 'inline'); //displays search button
+         $("#miles").css('display', 'inline'); //displays search button
+          $("#searchButton").css('display', 'block'); //displays search button
+     
   });
 
 
