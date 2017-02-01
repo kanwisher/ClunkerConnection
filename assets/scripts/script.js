@@ -61,7 +61,7 @@ let dataRef = firebase.database();
 $("#searchButton").on("click", function(event) {
   event.preventDefault();
 
-
+zipArray = [];
 
   // Code for storing and retrieving the most recent user.
 
