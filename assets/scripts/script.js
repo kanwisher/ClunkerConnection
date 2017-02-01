@@ -1,4 +1,5 @@
 
+
 $(function() { //on READY!
 
 
@@ -7,7 +8,6 @@ $(function() { //on READY!
 //global JSON
 const myData = JSON.parse(data); //turns data string into a JSON object
 let zipArray = [];
-
 
 
 
@@ -69,7 +69,7 @@ $("#searchButton").on("click", function(event) {
   }
 
   zipArray.push(zip);
-  console.log(zipArray);
+
 
 
 
@@ -97,9 +97,9 @@ dataRef.ref("carObject").on("child_added", function(childSnapshot) {
           "</td><td id='makeDisplay'>" + childSnapshot.val().make +
           "</td><td id='modelDisplay'>" + childSnapshot.val().model +
           "</td><td id='nextDisplay'>" + childSnapshot.val().zip +
-          "</td><td id='awayDisplay'>" + childSnapshot.val().prices + 
-          "</td><td id='milesDisplay'>" + childSnapshot.val().mileage + "</td></tr>");
-    
+          "</td><td id='awayDisplay'>$" + parseInt(childSnapshot.val().prices).toLocaleString('en') + 
+          "</td><td id='milesDisplay'>" + parseInt(childSnapshot.val().mileage).toLocaleString('en') + "</td></tr>");
+
   },
 
   function(errorObject) {
@@ -109,7 +109,6 @@ dataRef.ref("carObject").on("child_added", function(childSnapshot) {
 dataRef.ref("zipArray").on("value", function(childSnapshot){
   if (childSnapshot.val().length > 0) {
     zipArray = childSnapshot.val();
-    console.log(zipArray);
     addZipCode();  
   }
   
@@ -248,78 +247,80 @@ let vehicle = {
 
 
 
-
-
 let locations = [];
+initMap();
+
  //pulls zipcode and throws lat/long in array
 function addZipCode(){
-  console.log("hello");
+
+
+
+
   for (var i = 0; i < zipArray.length; i++) {
     let zipcode = zipArray[i];
-  
+
+    
         $.ajax({
           url: "http://maps.googleapis.com/maps/api/geocode/json?address=%22" + zipcode + "%22",
 
          success: function(result){
 
-          var zipObject = {
-            zipcode: "",
-            latLong: ""
+
+                let zipObject = {
+            zipcode: zipcode,
+            latLong: result.results[0].geometry.location
           }
-
-          zipObject.zipcode = zipcode;
-          zipObject.latLong = result.results[0].geometry.location;
-          console.log(zipObject.latLong);
-          
-
-          
-            //map function????
-          
+            
             locations.push(zipObject);
-           
-
             
-            
-            initMap();
-       
-
-            
-
-
         }
+
     });
+  
+  }
+
 
 }
+//when all ajax calls have returned;
+ $(document).ajaxStop(function () {
 
+      initMap();
+  });
+
+
+
+function getRandomArbitrary(min, max) {
+  return Math.random() * (max - min) + min;
 }
-
 
 
 function initMap() {
 
-  
+
   var charlotte = {lat: 35.2271, lng: -80.8431};
 
   var map = new google.maps.Map(document.getElementById('map'), {
     zoom: 10,
     center: charlotte,
 
-  scrollwheel: false,
-  disableDoubleClickZoom: true
+  scrollwheel: false
+
   });
   var iconBase = 'https://maps.google.com/mapfiles/kml/pal4/'
-  var contentString = '<div id="content">'+
-      '<div id="siteNotice">'+
-      '<h1> 1998 Ford Mustang </h1>' +
-      '<p> Mileage: 205000 </p>' +
-      '<p> Price: $4,500 </p>'
-      '</div>'+
-      '</div>';
+
+
 
 
 
 //looks at locations array and displays markers
-for (var i = 0; i < locations.length; i++) {
+for (let i = 0; i < locations.length; i++) {
+console.log(locations[i].latLong);
+
+
+locations[i].latLong.lat += getRandomArbitrary(-0.01, 0.01);
+locations[i].latLong.lng += getRandomArbitrary(-0.01, 0.01);
+
+
 
 
 
@@ -335,15 +336,14 @@ for (var i = 0; i < locations.length; i++) {
     
   });
 
-    var infowindow = new google.maps.InfoWindow({
-    content: contentString
-  });
+
+
+}
+
 
 }
 
 
-}
-initMap();
 
 
 
