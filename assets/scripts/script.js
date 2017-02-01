@@ -15,7 +15,9 @@ let zipArray = [];
 //contact stuff//
 
 
-
+$("#zip").on('focus', function(){
+  $(".errorPrompt").html("");
+})
 
 
 
@@ -54,7 +56,6 @@ $("#searchButton").on("click", function(event) {
 
 
 
-
   // Code for storing and retrieving the most recent user.
 
   let year = $("#yearDataList").val().trim()
@@ -70,6 +71,11 @@ $("#searchButton").on("click", function(event) {
   let mileage = $("#miles").val().trim();
 
   
+if (zip.match(/^\d{5}$/)){
+
+
+
+
 
 
   
@@ -95,7 +101,15 @@ dataRef.ref("zipArray").set(zipArray);
       
 
   });
+
+  } else{
+  $(".errorPrompt").html("Please enter a 5-digit zipcode")
+}
+
+
 });
+
+
 
 dataRef.ref("carObject").on("child_added", function(childSnapshot) {
 
@@ -130,6 +144,7 @@ dataRef.ref("zipArray").on("value", function(childSnapshot){
 $("body").delegate(".buyButton", "click", function(){
   $(".vehicleInfoModal").html(($(this).data("vehicle")));
 });
+
 
 
 
