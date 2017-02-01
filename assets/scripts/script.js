@@ -110,7 +110,7 @@ dataRef.ref("carObject").on("child_added", function(childSnapshot) {
           "</td><td class='vehicleData'>" + childSnapshot.val().zip +
           "</td><td class='vehicleData'>$" + parseInt(childSnapshot.val().prices).toLocaleString('en') + 
           "</td><td class='vehicleData'>" + parseInt(childSnapshot.val().mileage).toLocaleString('en') +
-      "</td><td class='vehicleData'><button class='buyButton' data-vehicle='" + JSON.stringify(childSnapshot.val()) + "'>BUY NOW</button>" + "</td></tr>");
+      "</td><td class='vehicleData'><button class='buyButton' data-target='#modal' data-toggle='modal' data-vehicle='" + JSON.stringify(childSnapshot.val()) + "'>Contact</button>" + "</td></tr>");
       
         
   },

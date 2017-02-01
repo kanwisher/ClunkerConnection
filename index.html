@@ -1,121 +1,115 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-
     <meta charset="utf-8">
-   
-
     <!-- Main page styles -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="assets/styles/style.css">
-      <link rel="stylesheet" type="text/css" href="assets/styles/textrollertheme.css">
-
-  
-        <!--FireBase CDN-->
-    
-
+    <link rel="stylesheet" type="text/css" href="assets/styles/textrollertheme.css">
+    <!--FireBase CDN-->
 </head>
-  <body>
-    <div class="container">
-        <div id="roller" class="textroller"></div>
-        <div id="secRoll" class="textSecRoll"></div>
-        <div class="col-lg-9">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h3 class="panel-title">Add Vehicle</h3>
-                </div>
-                <div class="panel-body">
-                    <form>
-                        <div class="form-group">
-                            <select id="yearDataList">
-                                <option value="" disabled selected>Select Your Year</option>
-                            </select>
-                            <select id="carMakesDataList">
-                                <option value="" disabled selected>Select Your Make</option>
-                            </select>
-                            <select id="carModelsDataList">
-                                <option value="" disabled selected>Select Your Model</option>
-                            </select>
-                            <input type='text' id="zip" placeholder="zipcode--">
-                            <input type='number' id="prices" placeholder="Selling prices--">
-                             <input type='number' id="miles" placeholder="Enter Mileage">
-                            <button type="button" id="searchButton">Search</button>
-                    </form>
-                </div>
-                <div id="images"></div>
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="panel panel-default">
-                            <div class="panel panel-heading">
-                                <h3 class="panel-title">Current Clunkers</h3>
-                            </div>
-                            <table class="table table-hover">
-                                <thead>
-                                    <th>Year</th>
-                                    <th>Make</th>
-                                    <th>Model</th>
-                                    <th>ZipCode</th>
-                                    <th>Selling prices</th>
-                                    <th>Mileage</th>
-                                    <th>Contact</th>
-                                </thead>
-                                <tbody id="clunkerTable">
-                                </tbody>
-                            </table>
 
-                        </div>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <div id="roller" class="textroller"></div>
+                <div id="secRoll" class="textSecRoll"></div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">List Your Vehicle:</h3>
+                    </div>
+                    <div class="panel-body">
+                        <form>
+                            <div class="form-group">
+                                <select id="yearDataList">
+                                    <option value="" disabled selected>Select Your Year</option>
+                                </select>
+                                <select id="carMakesDataList">
+                                    <option value="" disabled selected>Select Your Make</option>
+                                </select>
+                                <select id="carModelsDataList">
+                                    <option value="" disabled selected>Select Your Model</option>
+                                </select>
+                                <input type='text' id="zip" placeholder="zipcode--">
+                                <input type='number' id="prices" placeholder="Selling prices--">
+                                <input type='number' id="miles" placeholder="Enter Mileage">
+                                <button type="button" id="searchButton">Search</button>
+                            </div>
+                        </form>
+                        
+
+                        <div id="images"></div>
+
+                        
                     </div>
                 </div>
             </div>
-<!-- Button trigger modal -->
-<button type="button" class="vehicleData" data-toggle="modal" data-target="#modal">
-  Contact Seller
-</button>
- 
-<!-- Modal -->
-<div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-sm">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="modalLabel">Contact the Seller</h4>
-      </div>
-      <div class="modal-body">
-        <input type='text' placeholder='Name'>
-<input type='text' placeholder='E-Mail'>
-<textarea placeholder ='Comments/Questions'></textarea>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="" onclick='' data-dismiss="modal">Submit</button>
-      </div>
-    </div>
-  </div>
-</div>
+        </div>
+        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="panel panel-default">
+                                    <div class="panel panel-heading">
+                                        <h3 class="panel-title">Current Clunkers</h3>
+                                    </div>
+                                    <table class="table table-hover">
+                                        <thead>
+                                            <th>Year</th>
+                                            <th>Make</th>
+                                            <th>Model</th>
+                                            <th>ZipCode</th>
+                                            <th>Selling prices</th>
+                                            <th>Mileage</th>
+                                            <th>Contact</th>
+                                            <th>Image</th>
+                                        </thead>
+                                        <tbody id="clunkerTable">
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
 
-<div id="map"></div>
+        <!-- Modal -->
+        <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="modalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-sm">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="modalLabel">Contact the Seller</h4>
+                    </div>
+                    <div class="modal-body">
+                        <input type='text' placeholder='Name'>
+                        <input type='text' placeholder='E-Mail'>
+                        <textarea placeholder='Comments/Questions'></textarea>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="" onclick='' data-dismiss="modal">Submit</button>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-
-      <!-- AJax/ jQuery call -->
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-  
-    <!--Bootstrap Library CDN-->
- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-      <!--JSON file-->
-    <script type="text/javascript" src="assets/json/data.json"></script>
-     <!--Javascript/jQuery-->
-    
-    <script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
-  
-
-         <!-- Google maps API -->
-    <script  async defer src= "https://maps.googleapis.com/maps/api/js?key=AIzaSyC9_GECrd1tyrF3EoeHG4xgHL6wb916gOQ"></script>
+        <div id="map"></div>
+        <!-- AJax/ jQuery call -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+        <!--Bootstrap Library CDN-->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+        <!--JSON file-->
+        <script type="text/javascript" src="assets/json/data.json"></script>
+        <!--Javascript/jQuery-->
+        <script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
+        <!-- Google maps API -->
+        <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC9_GECrd1tyrF3EoeHG4xgHL6wb916gOQ"></script>
         <!--Text Roller Logo script-->
-    <script type="text/javascript" src="assets/scripts/textroller.js"></script>
-    <script type="text/javascript" src="assets/scripts/script.js"></script>
+        <script type="text/javascript" src="assets/scripts/textroller.js"></script>
+        <script type="text/javascript" src="assets/scripts/script.js"></script>
+</body>
 
-
-   
-   
-  </body>
 </html>
