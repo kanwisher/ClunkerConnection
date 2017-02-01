@@ -30,7 +30,7 @@ $("#back").on('click', function(){
 
 
 
-
+let vehicleImage;
 
 
 let config = {
@@ -69,15 +69,10 @@ $("#searchButton").on("click", function(event) {
 
   let mileage = $("#miles").val().trim();
 
+  
 
-  let car = {
-      year: year,
-      make: make,
-      model: model,
-      zip: zip,
-      prices: prices,
-      mileage: mileage
-  }
+
+  
 
   zipArray.push(zip);
 
@@ -95,7 +90,8 @@ dataRef.ref("zipArray").set(zipArray);
       model: model,
       zip: zip,
       prices: prices,
-      mileage: mileage
+      mileage: mileage,
+      vehicleImage: vehicleImage
       
 
   });
@@ -110,7 +106,8 @@ dataRef.ref("carObject").on("child_added", function(childSnapshot) {
           "</td><td class='vehicleData'>" + childSnapshot.val().zip +
           "</td><td class='vehicleData'>$" + parseInt(childSnapshot.val().prices).toLocaleString('en') + 
           "</td><td class='vehicleData'>" + parseInt(childSnapshot.val().mileage).toLocaleString('en') +
-      "</td><td class='vehicleData'><button class='buyButton' data-target='#modal' data-toggle='modal' data-vehicle='" + JSON.stringify(childSnapshot.val()) + "'>Contact</button>" + "</td></tr>");
+      "</td><td class='vehicleData'><button class='buyButton' data-target='#modal' data-toggle='modal' data-vehicle='" + childSnapshot.val().year + " " + childSnapshot.val().make + " " + childSnapshot.val().model + "'>Contact</button>" +
+      "</td><td class='vehicleData'>" + childSnapshot.val().vehicleImage + "</td></tr>");
       
         
   },
@@ -226,7 +223,7 @@ let vehicle = {
 
 
 
-  $("#searchButton").on('click', function() {
+  $("#carModelsDataList").on('change', function() {
 
       params.q = vehicle.currentYear + " " + vehicle.currentMake + " " + vehicle.currentModel;
 
@@ -245,9 +242,9 @@ let vehicle = {
           .done(function(response) {
 
 
-              let newDiv = $("<div>");
-              newDiv.html("<img src='" + response.value[0].contentUrl + "' height='200px'</img>");
-              $("#images").html(newDiv);
+             
+              vehicleImage = "<img src='" + response.value[0].contentUrl + "' height='100px'</img>";
+              
           })
           .fail(function() {
               alert("error");
