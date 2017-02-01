@@ -69,8 +69,9 @@ $("#searchButton").on("click", function(event) {
   }
 
   zipArray.push(zip);
+  console.log(zipArray);
 
-addZipCode(zipArray);
+
 
 dataRef.ref("zipArray").set(zipArray);
 
@@ -99,7 +100,6 @@ dataRef.ref("carObject").on("child_added", function(childSnapshot) {
           "</td><td id='awayDisplay'>" + childSnapshot.val().prices + 
           "</td><td id='milesDisplay'>" + childSnapshot.val().mileage + "</td></tr>");
     
-      
   },
 
   function(errorObject) {
@@ -108,7 +108,9 @@ dataRef.ref("carObject").on("child_added", function(childSnapshot) {
 
 dataRef.ref("zipArray").on("value", function(childSnapshot){
   if (childSnapshot.val().length > 0) {
-    zipArray = childSnapshot.val();  
+    zipArray = childSnapshot.val();
+    console.log(zipArray);
+    addZipCode();  
   }
   
 
@@ -250,8 +252,8 @@ let vehicle = {
 
 let locations = [];
  //pulls zipcode and throws lat/long in array
-function addZipCode(zipArray){
-  var zipArray = zipArray;
+function addZipCode(){
+  console.log("hello");
   for (var i = 0; i < zipArray.length; i++) {
     let zipcode = zipArray[i];
   
@@ -264,6 +266,7 @@ function addZipCode(zipArray){
             zipcode: "",
             latLong: ""
           }
+
           zipObject.zipcode = zipcode;
           zipObject.latLong = result.results[0].geometry.location;
           console.log(zipObject.latLong);
