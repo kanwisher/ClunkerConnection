@@ -98,6 +98,14 @@ if (zip.match(/^\d{5}$/) === null){
 
 
 
+        
+        $("#carModelsDataList").css('display', 'none'); 
+         $("#carMakesDataList").css('display', 'none'); 
+         $("#zip").css('display', 'none'); 
+        $("#prices").css('display', 'none'); 
+         $("#miles").css('display', 'none'); 
+          $("#searchButton").css('display', 'none'); 
+
 
 dataRef.ref("zipArray").set(zipArray);
 
