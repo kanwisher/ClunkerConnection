@@ -61,7 +61,7 @@ let dataRef = firebase.database();
 $("#searchButton").on("click", function(event) {
   event.preventDefault();
 
-zipArray = [];
+
 
   // Code for storing and retrieving the most recent user.
 
@@ -147,7 +147,7 @@ dataRef.ref("carObject").on("child_added", function(childSnapshot) {
 dataRef.ref("zipArray").on("value", function(childSnapshot){
   if (childSnapshot.val().length > 0) {
     zipArray = childSnapshot.val();
-    addZipCode();  
+    addZipCode();
   }
   
 
@@ -299,7 +299,7 @@ initMap();
 function addZipCode(){
 
 
-
+locations = [];
 
   for (var i = 0; i < zipArray.length; i++) {
     let zipcode = zipArray[i];
